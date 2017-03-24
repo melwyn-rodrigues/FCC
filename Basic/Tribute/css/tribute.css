@@ -1,0 +1,33 @@
+.page-header{
+    height:85px;                  /* height set because 'flag + Reggae' was getting cut by the didider line of the header*/
+    
+}
+
+.reggae{
+    position:relative;     /* not getting responsive alignment with 'Bob Marley' */
+    left:-4.8%;
+}
+
+
+.tribute{
+    	
+        width:60%;
+        float:none;
+        margin: 0 auto;
+    }
+
+ 
+#one{
+    background-color:#808507;
+}
+#two{
+    background-color:#FBB519;
+}
+#three{
+    background-color:#BC140C;
+}
+
+ 
+h2{
+    font-size:12px;
+}
