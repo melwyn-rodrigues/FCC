@@ -24,29 +24,48 @@
             window.open('https://twitter.com/intent/tweet?hashtags= freecodecamp&text='   + encodeURIComponent(message))}
           else{
       
-          window.open('https://twitter.com/intent/tweet?hashtags= freecodecamp&text='+'Less is more - Ludwig Mies Van Der Rohe')} // this takes care of the default (the first quote) quote which is hard-coded
+          window.open('https://twitter.com/intent/tweet?hashtags= freecodecamp&text='+'Get busy living, or get busy dying - The Shawshank Redemption')} // this takes care of the default (the first quote) quote which is hard-coded
         }
 
     var msg;           // declaring the 'msg' variable as global. This is done to facilitate the twitter function 
-    function tweetHandler() {
-       tweet($(msg).text()); 
+
+
+function tweetHandler() {
+			
+       tweet(msg); 
       //tweet(msg);
-    }
+    } 
+var currentQuote = '';
+var currentAuthor = '';
 
-
-
+		function displayQuote(){
+	$.ajax({
+		url: 'https://andruxnet-random-famous-quotes.p.mashape.com/',
+		type: 'POST', // The HTTP Method            // note that this is 'Post' method
+		data: {
+			"cat": "movies"    // this api had two categories ('cat') - 'movies' and 'famous'
+		}, // Additional parameters here
+		dataType: 'json',
+		success: function(data) {
+		  var quoteJson = JSON.stringify(data);
+		  var obj = JSON.parse(quoteJson);
+		  currentQuote = obj.quote;
+		  currentAuthor = obj.author;
+		 
+		 $(".message").html(currentQuote + "<br><br>" +  currentAuthor);
+		 msg=currentQuote+" : "+currentAuthor;
+	
+	},
+	
+		error: function(err) { alert(err); },
+		beforeSend: function(xhr) {
+		xhr.setRequestHeader("X-Mashape-Authorization", "b9Vs1ta2n3mshDwHWZsElgdBytcAp1TkFOljsnJCuVfxhkPTec"); 
+		}
+	})}; //ajax
 
   $(document).ready(function() {
             $.ajaxSetup({cache:false});     //If you don't set cache to false, you won't get a new quote when you click your button.
-            $("#getMessage").on("click", function(){
-          
-                        $.getJSON("http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&callback=", function(data) {
-                         msg= data[0].content+ " - " + data[0].title
-                         $(".message").html(msg);
-               
-                        });
-              
-                    });
+            $("#getMessage").on("click", displayQuote);
             $("#tweet").on("click", tweetHandler);
            
   });
@@ -68,7 +87,7 @@
 
 <div>
     <blockquote class="text-center">
-         Quotes to Inspire Design
+         Popular Quotes from Movies
     </blockquote>
     
 </div>
@@ -78,7 +97,7 @@
  
       <div  class="row text-center">
             <section  class="col-xs-12 message">          <!-- 'message' class is used by the jQuery function to display the quote in this location -->
-              <h4 >Less is more</h4> <br> <br><h5>- Ludwig Mies Van Der Rohe </h5>
+              <h4 >Get busy living, or get busy dying</h4> <br> <br><h5> The Shawshank Redemption </h5>
                      
             </section>
       </div>
@@ -91,7 +110,7 @@
   <div class="row">
     
          <div>
-            <section id="social" class="col-xs-12 text-center">
+            <section id="social" class="col-xs-12 text-center twitterLink">
                 
                 <button id="tweet" class ="btn"><a><img src="images/twitter.jpg" alt="twitter icon" class="img-responsive center-block"></a>
                 </button>
@@ -115,3 +134,4 @@
 
 
 <!-- some pointers taken from this pen by Nabendu Biswas - http://codepen.io/nabendu82/pen/GZRaQw
+<!-- some pointers taken from this pen by Lakshmi Chandana - http://codepen.io/ChandanaK/pen/ozoyPa
