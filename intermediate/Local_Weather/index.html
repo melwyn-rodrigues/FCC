@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Local Weather</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/weather.css">
+    <link href='https://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
+ <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+     <!-- jQuery (Bootstrap JS plugins depend on it) -->
+  <script src="js/jquery-2.1.4.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+<script>
+ 
+  $(document).ready(function() {
+
+function getTemp(latitude,longitude){
+						var apiKey="1711c979a0a3f10e2d62c7437d29654e";
+						var fullURL="http://api.openweathermap.org/data/2.5/weather?lat="+latitude+"&lon="+longitude+"&appid="+apiKey+"&units=imperial";
+  					$.getJSON(fullURL, function(data) {
+						
+						var describe_weather = data.weather[0].description;
+		
+						var weather_icon="http://openweathermap.org/img/w/"+data.weather[0].icon+".png";
+						
+					  $("#describe").html(describe_weather);
+	//				$("#icon").html("<img src='"+weather_icon+"'>");
+	//                  moved down to line 56 because the spring image was being pulled up instead of the weather icon
+	
+						temp_F = Math.floor(data.main.temp);
+						temp_C=Math.round(((temp_F-32)*5)/9);			
+					  $("#temp").html(temp_C);   // by default , temperature in F is displayed 
+			
+						if (temp_F>66){
+									$("img").attr("src", "images/summer.jpg");
+									}
+						else if (temp_F<39){
+									$("img").attr("src", "images/winter.jpg");
+									}
+						else {
+						$("img").attr("src", "images/spring.jpg");
+		
+					
+						$("#icon").html("<img src="+weather_icon+">");								
+						}		
+				 });				
+  }	
+	
+	
+ function getLocation(){
+						$.getJSON("https://ipapi.co/json/", function(data) {
+										
+						var lat=" ";
+						var long=" ";
+				
+						lat=data.latitude;     
+						long=data.longitude;
+						city=data.city;
+						country=data.country;
+					
+						$('#city').html(city+" , "+country);		
+	
+						getTemp(lat,long);				
+
+						});
+	}		
+		
+				var temp_F=" ";
+				var temp_C=" ";
+				getLocation();
+				
+				$(function() {
+							 $('#toggle-event').change(function() {      //bootstrap toggle feature
+
+									 if ($(this).prop('checked')){
+										 $('#temp').html(temp_C);
+											 }
+									 else{
+											 $('#temp').html(temp_F);		
+											 }
+								 });
+						 
+						 });
+
+  });
+</script>	
+
+<div class="container">
+		 <div class="row">
+					<div class="jumbotron">
+	
+							<div  class="col-xs-12">
+										<div class="container">
+														 <p id="photo"><img  src=" "  class="img-responsive center-block" >	</p>  	
+						 <!--							 <p id="photo"><img  src="images/spring.jpg" alt="spring image" class="img-responsive center-block" >	</p>  
+		 <!--			  				  <p id="demo"></p>    -->
+														 <div class="caption post-content">
+																<h2>Local Weather App</h2>
+														 </div>
+										</div>
+							</div>
+					</div>
+			</div>
+</div>
+<div class="container">
+					<div class="row">
+									<div  class="col-xs-6 text-right">
+										<section id="weather" >
+												<button id="city" class ="btn"><p3>  </p3> </button>
+										</section>								
+									</div>
+									<div  class="col-xs-6 text-left">
+										<section id="main" >
+											    
+												<button id="temp" class ="btn">      </button>
+												<button id="degree" class ="btn"> &deg       </button>
+<!--											<button id="temp_type" class ="btn">F</button>   -->
+												<input id="toggle-event" type="checkbox" checked data-toggle="toggle" data-on="C" data-off="F" data-onstyle="primary" data-offstyle="success">													
+												<button id="icon" class ="btn">      </button>
+												<button id="describe" class ="btn">     </button>
+										
+										</section>
+					
+									</div>
+					</div>     
+</div>
+<br><br><br><br>
+<div class="container">
+						<div class="row">
+								<section>
+										<div  class="col-xs-6 text-right">
+												<p>Powered by <a href="https://openweathermap.org/" target="_blank">OpenWeatherMap</a> |&nbsp;<a href="https://ipapi.co/" target="_blank">ipapi.co</a>&nbsp;&nbsp;&nbsp;|</p>
+										</div>
+								</section>
+								<section>
+										<div  class="col-xs-6 text-left">
+											<p>Coded by Melwyn</p
+									  </div>
+								</section>
+										
+						</div>     
+	</div>
+
+</body>
+</html>
+
+

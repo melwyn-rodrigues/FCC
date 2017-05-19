@@ -1,0 +1,87 @@
+h2{
+    text-align: center;
+    
+}
+
+h3{
+    text-align: center;
+    text-align: top;
+    color: black;
+ 
+}
+
+.jumbotron{
+    margin-top:40px;
+    padding: 10px;
+    height: 600px;
+     position:relative;
+}
+
+#photo{
+     margin-top:20px;
+     
+     
+     
+}
+.post-content {
+     top:20px;
+     left:300px;  
+    position: absolute;
+/*    background: none repeat scroll 0 0 #ffffff; */
+    opacity:1.0; 
+    margin:  auto;  
+    text-align: center;
+/*   z-index:2; */
+   color:black;
+    
+}
+
+#city{
+    background-color: black;
+    color: white;
+    height:60px;
+}
+#temp{
+    background-color: white;
+    color: grey;
+    height:60px;
+    
+    padding-right:1px;
+}
+#describe{
+    background-color: white;
+    color: grey;
+    height:60px;
+    padding-right:1px;
+}
+
+#icon{
+background-color: white;
+ 
+/*    height:60px;   */
+    padding-right:1px;
+ /*  position:absolute;  */
+   width:20%;
+   height:20%;
+
+}
+
+
+
+
+#degree{
+    background-color: white;
+    color: grey;
+    height:60px;
+    text-align: left;
+    padding-right:1px;
+    padding-left:1px;
+}
+#celsius{
+    background-color: white;
+    color: grey;
+    height:60px;
+    text-align: left;
+    padding-left:1px;
+    border: 1px solid blue; 
+}
