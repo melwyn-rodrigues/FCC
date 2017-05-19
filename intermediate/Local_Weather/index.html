@@ -26,7 +26,7 @@
 
 function getTemp(latitude,longitude){
 						var apiKey="1711c979a0a3f10e2d62c7437d29654e";
-						var fullURL="http://api.openweathermap.org/data/2.5/weather?lat="+latitude+"&lon="+longitude+"&appid="+apiKey+"&units=imperial";
+						var fullURL="https://api.openweathermap.org/data/2.5/weather?lat="+latitude+"&lon="+longitude+"&appid="+apiKey+"&units=imperial";
   					$.getJSON(fullURL, function(data) {
 						
 						var describe_weather = data.weather[0].description;
