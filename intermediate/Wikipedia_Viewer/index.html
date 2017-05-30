@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Wikipedia Viewer</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/wiki.css">
+    <link href='https://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
+ 
+</head>
+
+<body>
+     <!-- jQuery (Bootstrap JS plugins depend on it) -->
+  <script src="js/jquery-2.1.4.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+<!--<script src="https://bootswatch.com/bower_components/bootstrap/dist/js/bootstrap.min.js"></script> -->
+  <script>
+		
+			  $(document).ready(function() {
+	//							$.ajaxSetup({cache:false});     //If you don't set cache to false, you won't get a new quote when you click your button.
+								var search_string = " ";
+								var input=" ";							
+						//		var input = document.getElementById('txt'); //1
+	//												var input = document.getElementById('txt');
+	//													search_string = input.value;
+													
+								$("#txt").on('keyup', function (e) {     // captures the enter button click in the search text input field
+													if (e.keyCode === 13) {       // key code 13 is the 'Enter' key
+																var input = document.getElementById('txt'); //1
+																search_string = input.value;             //2
+																if(search_string===""){
+																				alert('Please enter search word!');  // alert is not being displayed - need to explore
+																				console.log("field is blank");
+																				input.focus();																												
+																} else{
+																				display();	
+																			}	
+											//					display();
+																
+																	}
+															});
+										
+					
+								$("#search_icon").on( "click", function(e) {
+								    				$("#search_bar").removeClass("hidden"); // this happens on the first click
+							
+      										var input = document.getElementById('txt'); //1
+													input.focus();  // puts cursor in the input field
+            							search_string = input.value;
+	/*												$(document).bind("click", check_blank);
+													e.stopPropagation();
+													
+					//								check_blank();	 */
+												display();
+						//					}
+	
+								});				// search_icon - on click		
+
+	
+	/*
+	function check_blank(){
+			//						input.focus();																												
+									if(search_string===" "){
+			//							$('#output').html("Please enter search word!");
+																alert('Please enter search word!');  // alert is not being displayed - need to explore
+																input.focus();																												
+										} else{
+																	
+		//															input = document.getElementById('txt'); //1
+		//															search_string = input.value;
+																display();	
+												      	}	
+				}
+	
+	
+	*/
+	
+	
+	function display(){						
+//				var input = document.getElementById('txt');
+	//			search_string = input.value;
+						
+									
+						console.log(search_string); // this happens when text is entered in the search bar and
+                //'search' icon is clicked (this the second click)								
+					$('#output').html(" ");   // this clears the output that has displayed by the previous ajax call
+					var url= "https://en.wikipedia.org/w/api.php?action=opensearch&search="+search_string+"&format=json&callback=?";			
+  //       	$.ajaxSetup({cache:false});
+					$.ajax({
+																	
+								type: "GET",															
+								url: url,
+								cache:false,
+								contentType: "application/json; charset=utf-8",
+								async: false,
+								dataType: "json",
+								success: function (data) {
+																					
+								console.log(data);
+
+	               $('#output').html();
+		            for (var i=0; i<data[1].length; i++){	
+											$("#output").prepend("<div><div class='btn-primary'><a href="+data[3][i]+ " target='_blank'><h2>"+data[1][i]+"</h2></a>"+"<p>"+data[2][i]+"</p></div></div>");																								
+						//		original code - title + description had link		$("#output").prepend("<div><div class='btn-primary'><a href="+data[3][i]+ " target='_blank'><h2>"+data[1][i]+"</h2>"+"<p>"+data[2][i]+"</p></a></div></div>");																								
+											$("#output").css('background-color','white');	  // changes the background-color
+											$("#output").css('height','auto');   // changes the height of the output box to 'auto'
+																										 // inorder to accomodate the content from wikipedia
+								 }
+								},     // success function
+   				
+								error: function(jqXHR, textStatus, errorThrown) {																
+											$('#output').html('<h2>Something went wrong!</h2><p><b>' + textStatus  + '</b> ' + errorThrown  + '</p>');        
+										}										
+						});     // ajax call														
+					}			//display function call 			
+								
+					$("#close_icon").on( "click", function() {
+									$("#search_bar").addClass("hidden");																								
+									$("#txt").val("");       // this clears the text that has been entered by user
+																	// and the placeholder stays
+									$('#output').html(" ");   // this clears the output that has displayed by the ajax call
+			  
+									});		// close_icon - on click																					
+				 });      //  document.ready
+			
+									//      search();																		
+									/*			function search(){						
+																					var	search_string = "";
+																							var input = document.getElementById('txt');
+																							search_string = input.value;
+																									input.focus();
+																							if (search_string) {
+																									alert(search_string);
+																									
+																							} else {
+																									alert('Please enter search word!');
+																									input.focus();
+																							}																
+												}																																	
+										*/																														
+							
+			//					$('#txt').on('click', function(e){     /* css written on the wiki.css page - does the same thing */
+			//								e.preventDefault();
+					//						$(this).css('border-color', '#ccc');
+					//						$(this).css('border-right-color', 'white');
+					//									});   	
+		</script>
+
+  
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="page-header text-center">
+                <h1 >Wikipedia Viewer</h1>
+            </div
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">							
+            <div class="row">      <!--nesting of columns done inorder to place 'search' icon in the right-hand side of the page-->
+						<div class="col-xs-12 col-md-8"><p> This is placeholder text</p>
+						</div>
+									
+						<div class="col-xs-11 col-md-3">
+								<div id="search_bar" class="input-group hidden">      
+										<input id="txt" type="text" class="form-control" placeholder="search">
+					 							<span class="input-group-btn">
+														<button id="close_icon" class="btn btn-default"  type="button"><a><img src="images/close.jpg" alt="close icon" class="img-responsive center-block" ></a></button>
+												</span>
+								</div>     
+						</div>
+									
+						<div class="col-xs-1 col-md-1">																																					
+								<button id="search_icon" class ="btn second"><a><img src="images/search.jpg" alt="search icon" class="img-responsive pull-left" ></a>
+								</button>
+						</div>
+            </div>
+			</div>			
+    </div>
+</div>
+ 
+<div  class="container container1">   
+<!--  <div class="panel-footer">  -->
+ 
+      <div  class="row text-center">
+            <section id="output" class="col-xs-12" >
+		<!--						<h5>search output</h5>      this option was abandoned -->
+								<h5></h5>
+            </section>				
+      </div>
+</div>  
+<br>
+<div  class="container">
+       <div  class="row text-center">
+            <section id="more" class="col-xs-12" >
+							<h5>The above search icon provides a Wikipedia ready reference feature within this app.</h5>
+            </section>
+      </div>
+</div>
+<br><br>
+ 
+</body>
+</html>
