@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Twitch Tv</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/twitch.css">
+    <link href='https://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet"> <!-- needed for toggle -->
+</head>
+
+<body>
+     <!-- jQuery (Bootstrap JS plugins depend on it) -->
+  <script src="js/jquery-2.1.4.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+
+	 <!--   <script src="js/ajax-utils.js"></script>   -->
+  <script src="js/twitch.js"></script>
+	
+	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>   <!-- needed for toggle -->
+<!--<script src="https://bootswatch.com/bower_components/bootstrap/dist/js/bootstrap.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
+
+<div class="container">
+    
+</div>
+<br>
+<br>
+<div class="container">
+    <div id="Title" class="row">
+        <div class="col-xs-12">
+            <div class="page-header text-center">
+                <h1 >Twitch TV</h1>
+								<h5 id="top-tag-line">Game On</h5>
+            </div
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<script type="text/x-handlebars-template" id="twitch_data_template">
+      <div class="row">
+        {{#each data}}
+        <div class="col-sm-3 twitch_data_container">
+          <img class="twitch_channel_image" src="{{{twitchImage}}}" alt="Twitch Channel's Image" />
+          <div class="twitch_channel_name">{{{channelName}}}</div>
+          <div class="twitch_channel_message">{{{channelMessage}}}</div>
+          <div class="twitch_channel_status">{{{status}}}</div>
+        </div>
+       {{/each}} 
+      </div>		
+</script>
+
+<div  class="container containerFlex">   
+	
+       <div id="main" class="row text-center hidden">		
+					 <div   class="col-xs-9 col-md-9" >						
+									<div id="twitch_data_output">
+										 
+									</div>							
+					 </div>				
+						<div id="remote2" class="col-xs-3 col-md-3">																																					
+									<button id="online" class ="btn"><a><img src="images/online.jpg" alt="search icon" class="img-responsive pull-left" ></a>
+									</button>
+									<button id="offline" class ="btn"><a><img src="images/offline.jpg" alt="search icon" class="img-responsive pull-left" ></a>
+									</button>
+									<button id="all" class ="btn"><a><img src="images/all-channels.jpg" alt="search icon" class="img-responsive pull-left" ></a>
+									</button>
+						</div>		
+			</div>
+	
+</div>
+ 
+ 
+  <div id="loading" class="container containerFlex">
+    <div style="visibility:false;color:black" class="check"><img src="https://i.stack.imgur.com/MnyxU.gif" alt="loading gif">
+		</div> 
+	</div>
+ 
+ 
+ <div class="container">
+	    <div class="row">
+					<div class="col-xs-9 col-md-9">																																					
+
+								<p id="tv"><video width="716" height="537" controls loop > <!--autoplay-->
+															<source src="videos/airheads.mp4" type="video/mp4">
+															<source src="videos/airheads.ogg" type="video/ogg">
+															Your browser does not support the video tag.
+													</video></p>
+							
+				
+					</div>
+					<div id="remote1" class="col-xs-3 col-md-3">																																					
+									<button id="online1" class ="btn"><a><img src="images/online.jpg" alt="search icon" class="img-responsive pull-left" ></a>
+									</button>
+									<button id="offline1" class ="btn"><a><img src="images/offline.jpg" alt="search icon" class="img-responsive pull-left" ></a>
+									</button>
+									<button id="all-channels1" class ="btn"><a><img src="images/all-channels.jpg" alt="search icon" class="img-responsive pull-left" ></a>
+									</button>
+									
+					</div>
+			</div>	
+ </div>
+ 
+ 
+  
+<br>
+<div  class="container">
+       <div id="bottom" class="row">
+			<div  class="page-header text-center">
+            <section id="bottom-tag" class="col-xs-12" >
+							<h5>A Popular Game Zone</h5>
+            </section>
+			</div>
+      </div>
+</div>
+<br><br>
+ 
+</body>
+</html>

@@ -1,0 +1,202 @@
+#Title{
+    background-color: black;
+    color:white;
+}
+
+.page-header{
+    border-bottom:0px solid red;
+    height:70px;
+    
+}
+
+
+#top-tag-line{
+    background-color: red;
+    color:white;
+    height:41px;
+    padding-top:15px;
+}
+
+
+#online1, #offline1, #all-channels1, #online, #offline, #all{
+    background-color: white;
+    border-color: white;
+    padding-left: 0;
+    padding-top: 0;
+    padding-left: 0;
+    margin-top:50px;
+    box-shadow:none;
+}
+
+#tv{
+    margin-top:50px;
+}
+
+
+
+#online1:focus, #offline1:focus, #all-channels1:focus, #online:focus, #offline:focus, #all:focus{
+    outline:0;
+    border:none;
+ 
+   box-shadow:none;  /*the 'search_icon box was showing a glow on the right. this css romoved it.   */ 
+}
+
+h2{
+    padding-top:20px;
+    padding-left:15px;
+    text-align:left;
+    
+}
+
+#bottom{
+    margin-right:0;
+}
+
+#bottom-tag{
+    height: 60px;
+    padding-top:15px;
+    margin-top:30px;  
+    color:white;
+    background-color: #c50900;
+}
+
+a{
+    color:black;
+}
+
+.containerFlex {
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+}
+
+#twitch_data_output{
+    background-color:white;   /* #1af9d2  - teal color */
+}
+
+.twitch_data_container {
+  position: relative;
+  height: 335px;
+  width: 210px;
+  margin: 40px;
+  background-color: #1af9d2;   /* #1af9d2  - teal color */
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 200ms ease-in-out;
+  transform: scale(1);
+}
+
+.twitch_data_container:hover {
+  box-shadow: 0px 0px 150px #000000;
+  z-index: 2;
+  transition: all 200ms ease-in;
+  transform: scale(1.1);
+}
+
+.twitch_channel_image {
+  width: 210px;
+  height: 180px;
+  border-bottom: 2px solid #000000;
+}
+
+.twitch_channel_message {
+  text-align: center;
+}
+
+.twitch_channel_status {
+  padding: 10px;
+  color: black;
+  font-weight: bold;
+  position:absolute;   /* Task#1 - to align 'status' to the same location  for all channels - online, offline or non-existent */
+  margin-top:290px;   /* to align 'status' to the same location  for all channels - online, offline or non-existent */
+}
+
+.twitch_channel_name {
+  padding: 10px;
+  color: black;
+  font-weight: bold;
+}
+
+.twitch_data {
+  margin: 20px;
+  width: 210px;
+  height: 280px;
+  background-color: white;
+}
+
+
+/*Media Queries*/      /* used from Kunal Gupta's pen' - not experimented yet */
+/*
+@media (max-width:1200px) {
+  .twitch_data_container {
+    margin: 55px;
+  }
+  .header_mid_section {
+    padding-left: 115px;
+  }
+}
+
+@media (max-width:992px) {
+  .twitch_data_container {
+    margin: 80px;
+  }
+}
+
+@media (max-width:820px) {
+  .account_type {
+    display: none;
+  }
+  .inner-addon {
+    display: none;
+  }
+  .header_mid_section {
+    padding-left: 0px;
+  }
+}
+
+@media (max-width:767px) {
+  .container {
+    display: flex;
+    justify-content: center;
+  }
+  .twitch_data_container {
+    height: 420px;
+    width: 380px;
+    margin: 0px;
+    margin-top: 40px;
+    margin-bottom: 15px;
+  }
+  .twitch_channel_image {
+    height: 220px;
+    width: 380px;
+  }
+  .twitch_channel_name {
+    padding: 25px;
+  }
+  .twitch_channel_status {
+    padding: 15px;
+  }
+}
+
+@media (max-width:470px) {
+  .twitch_data_container {
+    width: 300px;
+  }
+  .twitch_channel_image {
+    width: 300px;
+  }
+  .brand_icon {
+    display: none;
+  }
+}
+
+@media (max-width:470px) {
+  .twitch_data_container {
+    width: 270px;
+  }
+  .twitch_channel_image {
+    width: 270px;
+  }
+}
