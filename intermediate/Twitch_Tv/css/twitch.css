@@ -126,6 +126,62 @@ a{
   background-color: white;
 }
 
+.blur {
+  -webkit-filter: blur(3px);
+  filter: blur(3px);
+}
+
+.hidden {
+  display: none;
+}
+
+
+/* End of styling for twitch container section*/
+
+
+/* Modal Section styling*/
+
+.modal-backdrop {
+   background-color: white;    /* the default color was grey. Used the solution proposed on SOF
+            * https://stackoverflow.com/questions/10585689/change-the-background-color-in-a-twitter-bootstrap-modal */
+}
+
+
+#modal{
+    height:600px;
+    
+}
+
+
+#twitchModal{
+    padding-top: 140px;  /* original 70px */
+}
+
+.modal-content{
+  height:800px;
+}
+
+.close-button {
+  overflow: hidden;
+}
+
+.modal-dialog .close-button button.close span {
+  display: block;
+}
+
+.modal-dialog .modal-content {
+  box-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+.modal-dialog .modal-content iframe {
+  display: block;
+  margin: 0 auto;
+}
+
+
+/* End of modal styling section*/
 
 /*Media Queries*/      /* used from Kunal Gupta's pen' - not experimented yet */
 /*

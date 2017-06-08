@@ -42,6 +42,7 @@
 </div>
 <br>
 <br>
+
 <script type="text/x-handlebars-template" id="twitch_data_template">
       <div class="row">
         {{#each data}}
@@ -87,8 +88,8 @@
 					<div class="col-xs-9 col-md-9">																																					
 
 								<p id="tv"><video width="716" height="537" controls loop > <!--autoplay-->
-															<source src="videos/airheads.mp4" type="video/mp4">
-															<source src="videos/airheads.ogg" type="video/ogg">
+															<source src="videos/ESL.mp4" type="video/mp4">
+															<source src="videos/ESL.ogg" type="video/ogg">
 															Your browser does not support the video tag.
 													</video></p>
 							
@@ -119,6 +120,37 @@
       </div>
 </div>
 <br><br>
- 
+
+<!--Twitch Modal-->
+<div id="modal" class="container">
+	<div class="row">
+  <div class="modal fade"  id="twitchModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="close-button">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" frameborder="0"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div
+  </div>
+</div>
+  <!--/ Twitch Modal-->
+
+
 </body>
+
+
+
+
+
+
+
+
+
 </html>

@@ -203,7 +203,7 @@ function( n ){
 
  //When all the ajax calls start 
   $(document).ajaxStart(function() {
-		$(".check").show();
+	$(".check").show();
   });
 
   //When all the ajax calls are done and dusted
@@ -279,7 +279,47 @@ function( n ){
 	$("#online").css({'border': 'none'});
 	$("#all").css({'border': 'none'});
   });
-							
+	
+     //Binding the events mouseenter and mouseleave on twitch data containers as they were not present in the DOM when the page loads
+  $("#main").on({
+    mouseenter: function() {
+
+      $(this).addClass("hover");
+      $(".hover").click(function() {
+
+        var content = $(this).find(".twitch_channel_name").text();
+
+        if ($(this).find("span").text() == "Online") {
+
+          $("#twitchModal iframe").attr({
+            'src': 'https://player.twitch.tv/?channel=' + content,
+            'height': 940,
+            'width': 360,
+            'allowfullscreen': ''
+          });
+
+          $("#twitchModal").modal("show");
+          $("#main").css({'margin-top':'600px'});  // margin added to modal since I did not want it to overlap on the channels displayed
+          $("#main").addClass("blur");
+        } else {
+          window.open("https://www.twitch.tv/" + content);
+
+        }
+
+      });
+    },
+    mouseleave: function() {
+      $(this).removeClass("hover");
+    }
+  }, ".twitch_data_container");
+
+  //When the modal closes clear the iframe attributes and remove the blur effect which appears when it is on
+  $('#twitchModal').on('hidden.bs.modal', function() {
+    $(this).find('iframe').html("");
+    $(this).find('iframe').attr("src", "");
+    $("#main").removeClass("blur");
+    $("#main").css({'margin-top':'0px'});  //reset margin to default so that the modal does not create blank space
+  });						
  });      //  document.ready
 			
 
